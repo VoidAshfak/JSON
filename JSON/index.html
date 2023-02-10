@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON</title>
+</head>
+<body>
+    <h1>JavaScript object notation.</h1>
+    <ul id="users-container">
+
+    </ul>
+
+</body>
+<script>
+    // const user = {
+    //     id: 11,
+    //     name: 'Asif',
+    //     dept: 'CSE'
+    // }
+    // //console.log(user);
+
+    // userToJSON = JSON.stringify(user);
+    // console.log(userToJSON);
+
+    // JSONToUser = JSON.parse(userToJSON);
+    // console.log(JSONToUser);
+
+    fetch('https://jsonplaceholder.typicode.com/comments')
+      .then(response => response.json())
+      .then(json => displayUSers(json))
+      .catch(error => console.log(error))
+
+      function displayUSers(comments){
+        const userMail = comments.map(comments => comments.email);
+        //console.log(userNames);
+
+        const ul = document.getElementById("users-container");
+        for(let i = 0; i < userMail.length; i++){
+            const mail = userMail[i];
+            const listItem = document.createElement("li");
+            listItem.innerText = mail;
+            ul.appendChild(listItem);
+        }
+      }
+</script>
+</html>
